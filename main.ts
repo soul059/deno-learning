@@ -6,10 +6,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Dinosaur API!");
 });
 
+app.get("/name/:name", (req, res) => {
+  const { name } = req.params;
+  if (name === "dino"){
+    res.send("dino is a !");
+  }
+  else if(name === "trex"){
+    throw new Error("🦖 is not a T-Rex!");
+  }
+  res.send(`Hello, ${name}!`);
+});
+
 app.listen(8000);
 
 
-/* deno does not cantain process object which is used in nodejs. inorderto use that we need to import it from deno.
+/* 
+
+deno does not cantain process object which is used in nodejs. inorderto use that we need to import it from deno.
 
 if you just wnat to use some process like get env or exit the program you can use Deno object which is provided by deno runtime.
 
